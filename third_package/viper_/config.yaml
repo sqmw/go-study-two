@@ -1,0 +1,24 @@
+version: v1
+common:
+  os: centos7
+build:
+  tools:
+    golang: 1.21.13
+    git:
+    gcc:
+    make:
+    zip:
+  run:
+    cmd:
+      - /bin/bash ./scripts/build_package.sh
+  target:
+    distDir: .
+    files:
+      - ./*
+
+autodeploy:
+  targetDir: /opt/meituan/apps/dba/zebra-platform
+  run: /bin/bash ./scripts/post-deploy.sh
+  check: curl -m 2 http://localhost:8080/monitor/alive 2>/dev/null | grep true
+  checkRetry: 36
+  checkInterval: 10s

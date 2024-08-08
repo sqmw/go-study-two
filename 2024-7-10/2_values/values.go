@@ -9,4 +9,6 @@ func main() {
 	fmt.Println("100\n")
 	var c complex64 = 1 + 2i
 	fmt.Print(c * (2 + 1i))
+
+	fmt.Println(len("*******************************"))
 }
